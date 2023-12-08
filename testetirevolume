@@ -1,0 +1,37 @@
+# Import the datetime module
+import datetime
+
+# Define a function to compute the volume of air inside a tire
+def tire_volume(width_ratio, aspect_ratio, diameter):
+  # Convert the width ratio and aspect ratio to decimals
+  width_ratio = width_ratio / 100
+  aspect_ratio = aspect_ratio / 100
+
+  # Calculate the volume of air using the formula given in the assignment
+  volume = (3.14159 * width_ratio**2 * aspect_ratio * (width_ratio * aspect_ratio + 0.254 * diameter)) / 1000000
+
+  # Return the volume in cubic meters
+  return volume
+
+# Open the text file named "volumes.txt" in append mode
+file = open("volumes.txt", "a")
+
+# Get the current date in YYYY-MM-DD format
+date = datetime.date.today().strftime("%Y-%m-%d")
+
+# Get the input from the user for the width ratio, aspect ratio, and diameter of the tire
+width_ratio = int(input("Enter the width ratio of the tire: "))
+aspect_ratio = int(input("Enter the aspect ratio of the tire: "))
+diameter = int(input("Enter the diameter of the tire: "))
+
+# Compute the volume of air inside the tire using the function defined above
+volume = tire_volume(width_ratio, aspect_ratio, diameter)
+
+# Append a line of text containing the date, width ratio, aspect ratio, diameter, and volume to the file
+file.write(f"{date}, {width_ratio}, {aspect_ratio}, {diameter}, {volume}\n")
+
+# Close the file
+file.close()
+
+# Print a message to indicate that the program is done
+print("The program is done. Check the file 'volumes.txt' for the results.")
